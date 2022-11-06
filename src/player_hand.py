@@ -5,18 +5,13 @@ import itertools
 
 # Represents a player hand in a single run of the game
 class PlayerHand:
-    def __init__(self, card1: Card, card2: Card) -> None:
-        if card1 < card2:
-            card1, card2 = card2, card1
-        self.cards: List[Card] = [card1, card2]
-
     def __init__(self, cards: List[Card]) -> None:
         if cards[0] < cards[1]:
             cards[0], cards[1] = cards[1], cards[0]
         self.cards: List[Card] = cards
     
     # Create best Texas hold 'em hand with community cards
-    def get_best_hand(self, cards: List[Card]) -> Tuple(HandRanking, List[int], List[Card]):
+    def get_best_hand(self, cards: List[Card]) -> Tuple[HandRanking, List[int], List[Card]]:
         # If we are looking at a preflop scenario, just check for pocket pair
         if len(cards) < 3:
             value = HandRanking.HIGH_CARD
@@ -31,4 +26,4 @@ class PlayerHand:
         return best
 
     def __str__(self) -> str:
-        return f'{str(self.cards[0])}  {str(self.cards[1])}'
+        return f'{str(self.cards[0])} {str(self.cards[1])}'

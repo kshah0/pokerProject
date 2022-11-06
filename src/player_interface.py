@@ -13,14 +13,14 @@ class PlayerAction(enum.Enum):
     END_OF_STREET   = 4
 
 class Player(ABC):
-    def __init__(self, stack_size):
+    def __init__(self, stack_size) -> None:
         self.stack_size: float = stack_size
         self.current_bet: float = 0
         self.hand: PlayerHand = None
         self.active: bool = True
         self.history: List[Tuple(PlayerAction, float)] = []
 
-    def set_hand(self, hand: PlayerHand):
+    def set_hand(self, hand: PlayerHand) -> None:
         self.hand = hand
 
     @abstractmethod

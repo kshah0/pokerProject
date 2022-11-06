@@ -6,10 +6,6 @@ class Card:
                             }
     suits: set = set(['H', 'D', 'C', 'S'])
 
-    def __init__(self, rank: str, suit: str) -> None:
-        self.rank = rank
-        self.suit = suit
-
     def __init__(self, ranksuit: str) -> None:
         self.rank = ranksuit[0]
         self.suit = ranksuit[1]

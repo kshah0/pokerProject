@@ -11,7 +11,7 @@ class GameHand:
     # Assumes we play 1/2 NLHE
     relative_sb_value = 0.5
 
-    def __init__(self, players: List[Player], button_position: int):
+    def __init__(self, players: List[Player], button_position: int) -> None:
         num_players = len(players)
         self.num_players = num_players
         self.players = players
@@ -28,7 +28,7 @@ class GameHand:
         players[self.sb_position].stack_size = max(0, players[self.sb_position].stack_size - self.relative_sb_value)
         self.pot_size = self.current_bets[self.bb_position] + self.current_bets[self.sb_position]
     
-    def sim_betting_round(self, preflop: bool = False):
+    def sim_betting_round(self, preflop: bool = False) -> None:
         first_loop = True
         # Indicate player closest to button (or big blind in case of preflop) as last aggressor
         last_aggro = self.button_position if not preflop else self.bb_position
@@ -92,7 +92,7 @@ class GameHand:
         return (winners, self.pot_size / len(winners))
 
     # Get the number of players still in a hand
-    def get_active_player_count(self):
+    def get_active_player_count(self) -> int:
         cnt = 0
         for player in self.players:
             if player.active:
@@ -100,7 +100,7 @@ class GameHand:
         return cnt
 
     # Run a full hand for all players
-    def run_game(self):
+    def run_game(self) -> None:
         # Preflop
         self.sim_betting_round(preflop=True)
         # Check multiple people are still in
