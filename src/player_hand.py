@@ -20,8 +20,7 @@ class PlayerHand:
             return (value, [Card.card_order_dict[c.rank] for c in self.cards], self.cards)
         # Otherwise evaluate all combinations with community cards
         best = (HandRanking.HIGH_CARD, [], [])
-        for used in [list(i) for i in itertools.combinations(cards, 3)]:
-            hand = sorted(used + self.cards, reverse=True)
+        for hand in [list(i) for i in itertools.combinations(sorted(cards + self.cards, reverse=True), 5)]:
             best = max(best, (*evaluate_hand(hand), hand))
         return best
 
