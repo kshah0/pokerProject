@@ -46,6 +46,8 @@ def getActions(actions_string, bot_turn):
     # Shift bot turn based on pre-flop order
     bot_turn = (bot_turn-2)%len(prev_bets)
 
+    preflop = True
+
     for actions in round_actions:
         bot_fold = False
         single_round_actions_players = [action_map['na'] for i in range(5)]
@@ -56,6 +58,8 @@ def getActions(actions_string, bot_turn):
         try:
             # Check if betting round is after flop
             if actions == round_actions[1]:
+                #Unflag preflop
+                preflop = False
                 # Un-shift bot turn
                 bot_turn = (bot_turn+2)%len(prev_bets)
                 prev_bets_preflop = prev_bets.copy()
@@ -66,6 +70,8 @@ def getActions(actions_string, bot_turn):
                 break
 
         for i in range(len(actions)):
+            if i+offset == len(actions) or turn >= len(prev_bets):
+                break
             if turn < bot_turn:
                 print(actions[i+offset])
                 if actions[i+offset] != 'r':
@@ -79,7 +85,7 @@ def getActions(actions_string, bot_turn):
                         end_idx += 1
                     single_round_actions_players[turn] = int(actions[i+offset+1:end_idx])/BB_value - prev_bets[turn]
                     updateBets(actions[i+offset+1:end_idx], prev_bets, turn)
-                    offset = end_idx-(i+offset+1)
+                    offset += end_idx-(i+offset+1)
 
             elif turn == bot_turn:
                 if actions[i+offset] != 'r':
@@ -92,16 +98,30 @@ def getActions(actions_string, bot_turn):
                     end_idx = i+offset+1
                     while(actions[end_idx] != 'c' and actions[end_idx] != 'f' and actions[end_idx] != 'r'):
                         end_idx += 1
-                    import pdb; pdb.set_trace()
                     single_round_action_bot = [int(actions[i+offset+1:end_idx])/BB_value - prev_bets[turn]]   
-                    updateBets(actions[i+offset+1:end_idx], prev_bets, turn)           
-                break
+                    updateBets(actions[i+offset+1:end_idx], prev_bets, turn)  
+                    offset += end_idx-(i+offset+1)     
+                if not preflop:
+                    break
+            elif preflop:
+                if actions[i+offset] != 'r':
+                    updateBets(actions[i+offset], prev_bets, turn)
+                    if actions[i+offset] == 'f':
+                        folds[turn] = 1
+                else:
+                    end_idx = i+offset+1
+                    while(actions[end_idx] != 'c' and actions[end_idx] != 'f' and actions[end_idx] != 'r'):
+                        end_idx += 1
+                    updateBets(actions[i+offset+1:end_idx], prev_bets, turn)
+                    offset += end_idx-(i+offset+1)
             turn += 1
         
+        rem = 0
         for i in range(len(folds)):
-            if folds[i] and i < bot_turn:
-                del prev_bets[i]
+            if folds[i]:         
+                del prev_bets[i-rem]
                 bot_turn -= 1
+                rem+=1
         folds = [folds[i] for i in range(len(folds)) if folds[i] == 0]
                 
 
@@ -110,7 +130,7 @@ def getActions(actions_string, bot_turn):
 
         if bot_fold:
             break
-    
+        
     return round_actions_players, round_action_bot
                         
 def getHandBoard(cards, bot_turn):
