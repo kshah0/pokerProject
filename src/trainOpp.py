@@ -1,6 +1,7 @@
 import pandas as pd
 from os import listdir
 from os.path import isfile, join
+from sklearn import tree
 
 LOG_PATH = "./../../5H1AI_logs"
 BB_value = 100
@@ -73,7 +74,6 @@ def getActions(actions_string, bot_turn):
             if i+offset == len(actions) or turn >= len(prev_bets):
                 break
             if turn < bot_turn:
-                print(actions[i+offset])
                 if actions[i+offset] != 'r':
                     single_round_actions_players[turn] = action_map[actions[i+offset]]
                     updateBets(actions[i+offset], prev_bets, turn)
@@ -152,12 +152,15 @@ def parseFile(f):
     with open(f) as file:
         for line in file:
             if line.split(":")[0] == 'STATE':
-                print(line)
                 _, _, actions, cards, _, players = line.split(":")
                 players = players[:-1]
                 bot_turn = players.split("|").index("Pluribus")
-                #bot_hands, boards = getHandBoard(cards, bot_turn)
-                actions_players, actions_bots = getActions(actions, bot_turn)
+                bot_hand, boards = getHandBoard(cards, bot_turn)
+                actions_players, actions_bot = getActions(actions, bot_turn)
+                if(len(actions_bot) < len(bot_hand)):
+                    del bot_hand[len(actions_bot):len(bot_hand)]
+                    del boards[len(actions_bot):len(boards)]
+                return bot_hand, boards, actions_players, actions_bot
 
             
 
@@ -174,7 +177,13 @@ if __name__ == '__main__':
     for f in files:
             if f.split('.')[-1] == 'log':
                 print("Opening {}".format(f))
-                parseFile(join(LOG_PATH, f)) #inputs, outputs = 
+                bot_hand, boards, actions_players, actions_bot = parseFile(join(LOG_PATH, f))
+                for i in range(len(bot_hand)):
+                    input_train.loc[len(input_train.index)] = [*bot_hand[i], *boards[i], *actions_players[i]]
+                    output_train.loc[len(output_train.index)] = [*actions_bot[i]]
             else:
                 print("{} does not end with .log, not parsing".format(f))
                 continue
+    
+    model = tree.DecisionTreeClassifier()
+    model.fit(input_train, output_train)
