@@ -2,6 +2,7 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 from sklearn import tree
+import pickle
 
 LOG_PATH = "./../../5H1AI_logs"
 BB_value = 100
@@ -173,7 +174,7 @@ if __name__ == '__main__':
 
     print(input_train)
     files = [f for f in listdir(LOG_PATH) if isfile(join(LOG_PATH, f))]
-    # print(files)
+
     for f in files:
             if f.split('.')[-1] == 'log':
                 print("Opening {}".format(f))
@@ -184,6 +185,18 @@ if __name__ == '__main__':
             else:
                 print("{} does not end with .log, not parsing".format(f))
                 continue
-    
-    model = tree.DecisionTreeClassifier()
-    model.fit(input_train, output_train)
+
+    input_train = round(input_train).astype(int)
+    output_train = round(output_train).astype(int)
+    opp_model = tree.DecisionTreeClassifier()
+    opp_model.fit(input_train, output_train)
+
+
+    # Open the file to save as pkl file
+    opp_model_file = open("opp_model.pkl", 'wb')
+    pickle.dump(opp_model, opp_model_file)
+
+
+    #TO LOAD MODEL
+    # decision_tree_model_pkl = open(decision_tree_pkl_filename, 'rb')
+    # decision_tree_model = pickle.load(decision_tree_model_pkl)
