@@ -1,13 +1,20 @@
 import copy
+from math import sqrt
 import random
 import time
 from typing import Dict
-from game_state import is_over, next_moves
+from game_state import (
+    PokerMoveCommunity, 
+    PokerMovePlayer, 
+    is_over, 
+    next_moves
+)
 from node import (
     PokerMove,
     PokerGameState,
     Node,
     NodeType,
+    node_type_from_game_state,
 )
 from __future__ import annotations
 
@@ -82,5 +89,33 @@ def backpropagate(
 def update_game_state(
     game_state: PokerGameState,
     move: PokerMove,
+    debug: bool = True, # validate move type
 ):
+    if debug:
+        if node_type_from_game_state(game_state) == NodeType.CHANCE:
+            assert isinstance(move, PokerMoveCommunity)
+        else:
+            assert isinstance(move, PokerMovePlayer)
+
+# Selection strategies
+
+def chance_node_selection(root: Node) -> Node:
+    return random.choice(root.children.values())
+
+def opponent_node_selection(root: Node) -> Node:
+    # OPPONENT MODEL HERE
     pass
+
+def player_node_selection(root: Node) -> Node:
+    # UCT+
+    def uct_plus(node: Node):
+        c = sqrt(2)
+        return node.get_expected_value() + c*node.get_standard_dev()
+    max_value = -99999999
+    res = None
+    for child in root.children.values():
+        child_uct = uct_plus(child)
+        if child_uct > max_value:
+            max_value = child_uct
+            res = child
+    return res

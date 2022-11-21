@@ -35,5 +35,8 @@ class Node:
     def get_expected_value(self):
         return self.total_value/self.num_episodes
 
+    def get_standard_dev(self):
+        pass
+
 def node_type_from_game_state(game_state: PokerGameState) -> NodeType:
     pass
