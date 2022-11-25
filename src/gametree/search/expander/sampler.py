@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List
 from action.probability_action import ProbabilityAction
+from gametree.action.bet_action import BetAction
+from gametree.action.raise_action import RaiseAction
 from mcts.game_state import GameState
 
 from mcts.player_id import PlayerId
