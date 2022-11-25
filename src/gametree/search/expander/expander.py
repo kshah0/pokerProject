@@ -1,7 +1,6 @@
-from abc import ABC, abstractmethod
 from typing import List
-from mcts.actions.probability_action import ProbabilityAction
-from mcts.nodes.expander.sampler import Sampler
+from action.probability_action import ProbabilityAction
+from search.expander.sampler import Sampler
 from mcts.player_id import PlayerId
 
 

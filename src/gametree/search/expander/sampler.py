@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from mcts.actions.probability_action import ProbabilityAction
+from action.probability_action import ProbabilityAction
 from mcts.game_state import GameState
 
 from mcts.player_id import PlayerId
