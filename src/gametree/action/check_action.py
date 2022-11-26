@@ -20,7 +20,7 @@ class CheckAction(SearchBotAction):
         next_to_act = self.game_state.get_next_active_player_after(self.actor)
         new_round = (
             next_to_act.has_checked() or
-            self.game_state.round == Round.PREFLOP or
+            self.game_state.get_round() == Round.PREFLOP or
             self.actor == self.game_state.get_big_blind() or
             self.game_state.get_largest_bet() <= self.game_state.table_config.big_blind
         )

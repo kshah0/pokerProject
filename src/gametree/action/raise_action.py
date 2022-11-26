@@ -17,8 +17,8 @@ class RaiseAction(SearchBotAction):
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:
         actor_state = self.game_state.get_player(self.actor)
-        stack = actor_state.stack
-        old_bet = actor_state.bet
+        stack = actor_state.get_stack()
+        old_bet = actor_state.get_bet()
         largest_bet = self.game_state.get_largest_bet()
         deficit = largest_bet - old_bet
         moved_amount = deficit + self.amount
@@ -48,8 +48,8 @@ class RaiseAction(SearchBotAction):
     # @Override
     def __str__(self) -> str:
         actor_state = self.game_state.get_player(self.actor)
-        stack = actor_state.stack
-        old_bet = actor_state.bet
+        stack = actor_state.get_stack()
+        old_bet = actor_state.get_bet()
         largest_bet = self.game_state.get_largest_bet()
         deficit = largest_bet - old_bet
         moved_amount = deficit + self.amount

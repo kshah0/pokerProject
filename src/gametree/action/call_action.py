@@ -14,8 +14,8 @@ class CallAction(SearchBotAction):
     def get_unwrapped_state_after_action(self) -> GameState:
         actor_state = self.game_state.get_player(self.actor)
         largest_bet = self.game_state.get_largest_bet()
-        stack = actor_state.stack
-        bet = actor_state.bet
+        stack = actor_state.get_stack()
+        bet = actor_state.get_bet()
 
         if stack <= (largest_bet - bet):
             state = AllInState(
@@ -47,7 +47,7 @@ class CallAction(SearchBotAction):
         # What if small or big blind all-in?
         if (
             round_ends and
-            self.game_state.round == Round.PREFLOP and
+            self.game_state.get_round() == Round.PREFLOP and
             self.actor == self.game_state.get_small_blind() and
             largest_bet <= self.game_state.table_config.big_blind
         ):

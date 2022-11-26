@@ -172,6 +172,6 @@ class InnerNode(INode):
                 self,
                 prob_action,
                 self.game_state.get_player(self.bot).get_stack() + int(
-                    e.fold_state.get_game_pot_size()*(1-self.game_state.get_table_configuration().get_rake())
+                    e.fold_state.get_game_pot_size()*(1-self.game_state.table_config.get_rake())
                 )
             )

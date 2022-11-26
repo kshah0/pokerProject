@@ -16,7 +16,7 @@ class BetAction(SearchBotAction):
 
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:
-        stack = self.game_state.get_player(self.actor).stack
+        stack = self.game_state.get_player(self.actor).get_stack()
         if stack == self.amount:
             bet_state = AllInState(
                 self.game_state,
@@ -43,7 +43,7 @@ class BetAction(SearchBotAction):
         raise RuntimeError("Round can't be over after a bet")
 
     def __str__(self) -> str:
-        if self.game_state.get_player(self.actor).stack == self.amount:
+        if self.game_state.get_player(self.actor).get_stack() == self.amount:
             return f"Bet {self.amount} (all in)"
         return f"Bet {self.amount}"
         

@@ -46,7 +46,7 @@ class FoldAction(SearchBotAction):
             )
         if (
             round_ends and
-            self.game_state.round == Round.PREFLOP and
+            self.game_state.get_round() == Round.PREFLOP and
             self.actor == self.game_state.get_small_blind() and
             self.game_state.get_largest_bet() <= self.game_state.table_config.big_blind
         ):
