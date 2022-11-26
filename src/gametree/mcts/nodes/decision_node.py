@@ -1,9 +1,9 @@
 from action.probability_action import ProbabilityAction
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 from mcts.nodes.config import Config
 from mcts.nodes.inner_node import InnerNode
 from mcts.nodes.inode import INode
-from mcts.player_id import PlayerId
+from gametree.playerstate.player_id import PlayerId
 from mcts.strategies.backpropagation.backpropagation_strategy import BackPropagationStrategy
 
 

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from action.probability_action import ProbabilityAction
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 from mcts.nodes.inner_node import InnerNode
 from mcts.nodes.leaf_node import LeafNode
 from mcts.strategies.backpropagation.running_stats import RunningStats

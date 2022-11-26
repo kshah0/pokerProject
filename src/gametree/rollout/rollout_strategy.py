@@ -4,8 +4,9 @@ import random
 from typing import List, Set
 
 from card import Card
-from gametree.mcts.game_state import GameState
-from gametree.mcts.player_id import PlayerId
+from gametree.gamestate.game_state import GameState
+from gametree.playerstate.player_id import PlayerId
+from gametree.playerstate.player_state import PlayerState
 
 
 class RollOutStrategy(ABC):
@@ -42,7 +43,7 @@ class RollOutStrategy(ABC):
         self.active_opponents = self.get_active_opponents(self.all_players)
 
         self.game_pot_size = self.game_state.get_game_pot_size()
-        self.bot_card_1, self.bot_card_2 = self.bot_state.get_cards()
+        self.bot_card_1, self.bot_card_2 = tuple(self.bot_state.cards)
 
         self.used_fixed_community_cards = self.game_state.get_community_cards()
         self.used_fixed_community_and_bot_cards = self.get_set_of(

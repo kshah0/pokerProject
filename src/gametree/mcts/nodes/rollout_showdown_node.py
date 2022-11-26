@@ -1,5 +1,5 @@
 from action.probability_action import ProbabilityAction
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 from mcts.nodes.inner_node import InnerNode
 from mcts.nodes.showdown_node import ShowdownNode
 

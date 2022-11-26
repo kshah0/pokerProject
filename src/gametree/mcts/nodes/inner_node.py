@@ -7,9 +7,9 @@ from mcts.nodes.constant_leaf_node import ConstantLeafNode
 from mcts.nodes.decision_node import DecisionNode
 from search.expander.expander import Expander
 from mcts.nodes.opponent_node import OpponentNode
-from mcts.player_id import PlayerId
+from gametree.playerstate.player_id import PlayerId
 from action.probability_action import ProbabilityAction
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 from mcts.nodes.inode import INode
 from __future__ import annotations
 

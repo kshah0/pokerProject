@@ -1,6 +1,6 @@
 from gametree.action.search_bot_action import SearchBotAction
-from gametree.mcts.game_state import GameState
-from gametree.mcts.player_id import PlayerId
+from gametree.gamestate.game_state import GameState
+from gametree.playerstate.player_id import PlayerId
 
 
 class RaiseAction(SearchBotAction):

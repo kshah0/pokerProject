@@ -3,9 +3,9 @@ from typing import List
 from action.probability_action import ProbabilityAction
 from gametree.action.bet_action import BetAction
 from gametree.action.raise_action import RaiseAction
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 
-from mcts.player_id import PlayerId
+from gametree.playerstate.player_id import PlayerId
 
 
 class Sampler(ABC):
@@ -17,7 +17,7 @@ class Sampler(ABC):
         model: OpponentModel,
         actor: PlayerId,
         bot: PlayerId,
-    ):
+    ) -> List[ProbabilityAction]:
         pass
 
     def add_raise_probabilities(

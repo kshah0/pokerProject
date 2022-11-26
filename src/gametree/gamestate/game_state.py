@@ -2,8 +2,10 @@ from abc import ABC, abstractmethod
 from typing import Dict, Set
 from card import Card
 
-from gametree.mcts.player_id import PlayerId
+from gametree.playerstate.player_id import PlayerId
 from __future__ import annotations
+
+from gametree.playerstate.player_state import PlayerState
 
 
 class GameState(ABC):

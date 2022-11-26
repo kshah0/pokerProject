@@ -1,8 +1,8 @@
 from abc import abstractmethod
 from gametree.action.action_wrapper import ActionWrapper
 from gametree.action.exceptions import GameEndedException
-from mcts.player_id import PlayerId
-from mcts.game_state import GameState
+from gametree.playerstate.player_id import PlayerId
+from gametree.gamestate.game_state import GameState
 
 class SearchBotAction(ActionWrapper):
     game_state: GameState
