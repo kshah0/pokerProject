@@ -1,10 +1,10 @@
 from typing import List
 from action.probability_action import ProbabilityAction
-from search.expander.sampler import Sampler
-from mcts.player_id import PlayerId
+from gametree.search.expander.sampling.sampler import Sampler
+from gametree.playerstate.player_id import PlayerId
 
 
-from mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
 class Expander:
     num_bet_size_samples: int
     game_state: GameState

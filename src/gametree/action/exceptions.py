@@ -1,4 +1,5 @@
-from gametree.mcts.game_state import GameState
+from gametree.gamestate.game_state import GameState
+from gametree.playerstate.player_state import PlayerState
 
 
 class DefaultWinnerException(Exception):
