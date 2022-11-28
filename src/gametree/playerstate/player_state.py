@@ -12,6 +12,22 @@ class PlayerState(ABC):
     cards: Set[Card]
 
     @abstractmethod
+    def get_player_id(self) -> PlayerId:
+        pass
+
+    @abstractmethod
+    def get_seat_id(self) -> SeatId:
+        pass
+
+    @abstractmethod
+    def get_name(self) -> str:
+        pass
+
+    @abstractmethod
+    def get_cards(self) -> Set[Card]:
+        pass
+
+    @abstractmethod
     def get_stack(self) -> int:
         pass
 

@@ -38,6 +38,10 @@ class GameState(ABC):
         pass
 
     @abstractmethod
+    def get_round_pot_size(self) -> int:
+        pass
+
+    @abstractmethod
     def get_game_pot_size(self) -> int:
         pass
 
