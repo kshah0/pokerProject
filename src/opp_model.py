@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Set, List
-from card import Card
-
+from typing import Dict
 from gametree.playerstate.player_id import PlayerId
 from gametree.playerstate.player_state import PlayerState
 

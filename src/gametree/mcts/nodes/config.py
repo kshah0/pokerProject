@@ -2,6 +2,7 @@ from gametree.search.expander.sampling.sampler import Sampler
 from mcts.nodes.showdown_node import ShowdownNode
 from mcts.strategies.backpropagation.backpropagation_strategy import BackPropagationStrategy
 from mcts.strategies.selection.selection_strategy import SelectionStrategy
+from opp_model import OpponentModel
 
 
 class Config:

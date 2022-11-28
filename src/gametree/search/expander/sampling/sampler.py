@@ -6,6 +6,7 @@ from gametree.action.raise_action import RaiseAction
 from gametree.gamestate.game_state import GameState
 
 from gametree.playerstate.player_id import PlayerId
+from opp_model import OpponentModel
 
 
 class Sampler(ABC):

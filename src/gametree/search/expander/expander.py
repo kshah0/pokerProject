@@ -2,6 +2,7 @@ from typing import List
 from action.probability_action import ProbabilityAction
 from gametree.search.expander.sampling.sampler import Sampler
 from gametree.playerstate.player_id import PlayerId
+from opp_model import OpponentModel
 
 
 from gametree.gamestate.game_state import GameState

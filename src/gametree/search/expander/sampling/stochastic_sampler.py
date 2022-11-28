@@ -10,6 +10,8 @@ from gametree.gamestate.game_state import GameState
 from gametree.playerstate.player_id import PlayerId
 from gametree.search.expander.sampling.sampler import Sampler
 
+from opp_model import OpponentModel
+
 
 class StochasticSampler(Sampler, ABC):
     num_bet_size_samples: int
