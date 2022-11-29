@@ -1,6 +1,7 @@
 from abc import ABC
 from typing import List, Set
 from card import Card
+from gametree.action.probability_action import ProbabilityAction
 
 from gametree.playerstate.abstract_player_state import AbstractPlayerState
 from gametree.playerstate.player_id import PlayerId
@@ -51,3 +52,6 @@ class ForwardingPlayerState(AbstractPlayerState, ABC):
     # @Override
     def has_checked(self) -> List[int]:
         return self.player_state.get_bet_progression()
+
+    def get_prev_action(self) -> ProbabilityAction:
+        return self.player_state.get_prev_action()

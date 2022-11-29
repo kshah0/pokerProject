@@ -1,5 +1,6 @@
 from typing import Set, List
 from card import Card
+from gametree.action.probability_action import ProbabilityAction
 from gametree.playerstate.abstract_player_state import AbstractPlayerState
 from gametree.playerstate.player_id import PlayerId
 
@@ -42,3 +43,6 @@ class SeatedPlayerState(AbstractPlayerState):
 
     def has_checked(self) -> bool:
         return False
+
+    def get_prev_action(self) -> ProbabilityAction:
+        return self.player.get_prev_action()

@@ -1,16 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import List, Set
 from card import Card
+from gametree.action.probability_action import ProbabilityAction
 
 from gametree.playerstate.player_id import PlayerId
 
 
 class PlayerState(ABC):
-    player_id: PlayerId
-    seat_id: SeatId
-    name: str
-    cards: Set[Card]
-
     @abstractmethod
     def get_player_id(self) -> PlayerId:
         pass
@@ -61,4 +57,8 @@ class PlayerState(ABC):
 
     @abstractmethod
     def has_checked(self) -> bool:
+        pass
+
+    @abstractmethod
+    def get_prev_action(self) -> ProbabilityAction:
         pass
