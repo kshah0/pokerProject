@@ -6,6 +6,7 @@ from gametree.gamestate.abstract_game_state import AbstractGameState
 from gametree.gamestate.game_state import GameState
 from gametree.playerstate.player_id import PlayerId
 from gametree.playerstate.player_state import PlayerState
+from gametree.round import Round
 
 
 class ForwardingGameState(AbstractGameState, ABC):
