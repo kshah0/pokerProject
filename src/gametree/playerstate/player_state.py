@@ -61,5 +61,5 @@ class PlayerState(ABC):
         pass
 
     @abstractmethod
-    def get_prev_action(self) -> ProbabilityAction:
+    def get_prev_action(self) -> int:
         pass

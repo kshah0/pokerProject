@@ -8,7 +8,6 @@ from typing import Tuple, Dict, List
 from opp_model import OpponentModel
 from sklearn.tree import DecisionTreeClassifier
 from pickle import load
-from copy import deepcopy
 from pandas import DataFrame
 
 class Opponents(OpponentModel):
@@ -20,7 +19,7 @@ class Opponents(OpponentModel):
         self.botId = id
 
         decision_tree_model_pkl = open("opp_model.pkl", 'rb')
-        self.model =load(decision_tree_model_pkl)
+        self.model = load(decision_tree_model_pkl)
 
     def get_bot_id(self) -> PlayerId:
         return self.botID

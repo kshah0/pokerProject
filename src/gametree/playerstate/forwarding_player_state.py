@@ -54,5 +54,5 @@ class ForwardingPlayerState(AbstractPlayerState, ABC):
     def has_checked(self) -> List[int]:
         return self.player_state.get_bet_progression()
 
-    def get_prev_action(self) -> ProbabilityAction:
+    def get_prev_action(self) -> int:
         return self.player_state.get_prev_action()

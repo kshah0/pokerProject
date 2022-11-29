@@ -146,7 +146,6 @@ def getHandBoard(cards, bot_turn):
                 new_board[card_num] = cardValue(dealt_cards[2*i:2*i+2])
                 card_num += 1
             boards.append(new_board)
-    import pdb; pdb.set_trace()
     return bot_hand, boards
 
 
@@ -192,7 +191,6 @@ if __name__ == '__main__':
     opp_model = tree.DecisionTreeClassifier()
     opp_model.fit(input_train, output_train)
 
-    # import pdb; pdb.set_trace()
     # Open the file to save as pkl file
     opp_model_file = open("opp_model.pkl", 'wb')
     pickle.dump(opp_model, opp_model_file)
