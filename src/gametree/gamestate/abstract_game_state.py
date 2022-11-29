@@ -4,6 +4,7 @@ from typing import Set
 from gametree.gamestate.game_state import GameState
 from gametree.playerstate.player_id import PlayerId
 from gametree.playerstate.player_state import PlayerState
+from gametree.playerstate.seat_id import SeatId
 
 
 class AbstractGameState(GameState, ABC):

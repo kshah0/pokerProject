@@ -6,11 +6,13 @@ from gametree.playerstate.player_id import PlayerId
 from __future__ import annotations
 
 from gametree.playerstate.player_state import PlayerState
+from gametree.playerstate.seat_id import SeatId
+from gametree.round import Round
+from gametree.table_config import TableConfiguration
 
 
 class GameState(ABC):
     
-    table_config: TableConfiguration
     seat_map: Dict[SeatId, PlayerId]
 
     @abstractmethod
@@ -66,7 +68,7 @@ class GameState(ABC):
         pass
 
     @abstractmethod
-    def get_last_event(self) -> HoldemTableTreeEvent:
+    def get_last_event(self):
         pass
 
     # A derived state property that is the difference between the 
@@ -131,4 +133,8 @@ class GameState(ABC):
 
     @abstractmethod
     def get_small_blind(self) -> PlayerId:
+        pass
+
+    @abstractmethod
+    def get_table_config(self) -> TableConfiguration:
         pass
