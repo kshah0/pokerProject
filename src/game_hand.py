@@ -26,7 +26,7 @@ class GameHand:
         players[self.bb_position].stack_size = max(0, players[self.bb_position].stack_size - 1)
         players[self.sb_position].current_bet = min(self.relative_sb_value, players[self.sb_position].stack_size)
         players[self.sb_position].stack_size = max(0, players[self.sb_position].stack_size - self.relative_sb_value)
-        self.pot_size = self.current_bets[self.bb_position] + self.current_bets[self.sb_position]
+        self.pot_size: float = self.current_bets[self.bb_position] + self.current_bets[self.sb_position]
     
     def sim_betting_round(self, preflop: bool = False) -> None:
         first_loop = True
@@ -112,3 +112,37 @@ class GameHand:
             # Check multiple people are still in
             if self.get_active_player_count() == 1:
                 return
+
+    # Get player metadata
+    def get_players(self) -> List[Player]:
+        return self.players
+
+    # Get number of players at the table
+    def get_num_players(self) -> int:
+        return self.num_players
+
+    # Get position of dealer
+    def get_dealer_position(self) -> int:
+        return self.button_position
+
+    # Get pot size
+    def get_pot_size(self) -> float:
+        return self.pot_size
+
+    # Get community cards
+    def get_community_cards(self) -> List[Card]:
+        return self.deck.get_board()
+
+    # Get current round of betting
+    def get_round(self) -> str:
+        if self.deck.board_cards_dealt == 0:
+            return "preflop"
+        elif self.deck.board_cards_dealt == 3:
+            return "flop"
+        elif self.deck.board_cards_dealt == 4:
+            return "turn"
+        elif self.deck.board_cards_dealt == 5:
+            return "river"
+        else:
+            raise RuntimeError("Invalid number of community cards has been dealt")
+        
