@@ -1,6 +1,7 @@
 from typing import List
 from gametree.gamestate.forwarding_game_state import ForwardingGameState
 from gametree.gamestate.game_state import GameState
+from gametree.gamestate.modifiers.events.all_in_event import AllInEvent
 from gametree.playerstate.forwarding_player_state import ForwardingPlayerState
 from gametree.playerstate.player_id import PlayerId
 from gametree.playerstate.player_state import PlayerState
@@ -15,13 +16,13 @@ class AllInPlayerState(ForwardingPlayerState):
         self.all_in_state.new_bet_size
 
     def get_total_investment(self) -> int:
-        return super().get_total_investment() + self.all_in_state.event.get_moved_amount()
+        return super().get_total_investment() + self.all_in_state.event.moved_amount
 
     def get_stack(self) -> int:
         return 0
 
     def get_player_id(self) -> PlayerId:
-        return self.all_in_state.event.get_player_id()
+        return self.all_in_state.event.player_id
 
     def has_folded(self) -> bool:
         return False
@@ -38,7 +39,7 @@ class AllInPlayerState(ForwardingPlayerState):
             result += self.all_in_state.game_state.get_player(
                 self.all_in_state.game_state.get_last_bettor()
             ).get_bet_progression()
-        result += self.all_in_state.event.get_moved_amount()
+        result += [self.all_in_state.event.moved_amount]
         return result
 
 class AllInState(ForwardingGameState):
@@ -52,9 +53,9 @@ class AllInState(ForwardingGameState):
     def __init__(self, game_state: GameState, event: AllInEvent) -> None:
         super().__init__(game_state)
         self.event = event
-        player = super().get_player(event.get_player_id())
-        self.new_pot_size = super().get_round_pot_size() + event.get_moved_amount()
-        self.new_bet_size = player.get_bet() + event.get_moved_amount()
+        player = super().get_player(event.player_id)
+        self.new_pot_size = super().get_round_pot_size() + event.moved_amount
+        self.new_bet_size = player.get_bet() + event.moved_amount
         self.raise_amount = max(
             self.new_bet_size - super().get_largest_bet(),
             0
@@ -62,7 +63,7 @@ class AllInState(ForwardingGameState):
         self.player_state = AllInPlayerState(player, self)
 
     def get_player(self, player_id: PlayerId) -> PlayerState:
-        if self.event.get_player_id() == player_id:
+        if self.event.player_id == player_id:
             return self.player_state
         return super().get_player(player_id)
 
@@ -82,7 +83,7 @@ class AllInState(ForwardingGameState):
 
     def get_last_bettor(self) -> PlayerId:
         if self.raise_amount > 0:
-            return self.event.get_player_id()
+            return self.event.player_id
         return super().get_last_bettor()
 
     def get_num_raises(self) -> int:
