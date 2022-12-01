@@ -45,5 +45,5 @@ class SeatedPlayerState(AbstractPlayerState):
     def has_checked(self) -> bool:
         return False
 
-    def get_prev_action(self) -> ProbabilityAction:
+    def get_prev_action(self) -> int:
         return self.player.get_prev_action()
