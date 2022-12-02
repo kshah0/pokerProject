@@ -14,8 +14,8 @@ class FoldAction(SearchBotAction):
         super().__init__(game_state, actor)
 
     # @Override
-    def perform(self, context: RemoteHoldemPlayerContext) -> None:
-        context.fold()
+    # def perform(self, context: RemoteHoldemPlayerContext) -> None:
+    #     context.fold()
 
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:

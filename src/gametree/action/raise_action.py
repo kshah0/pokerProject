@@ -16,8 +16,8 @@ class RaiseAction(SearchBotAction):
         self.amount = amount
 
     # @Override
-    def perform(self, context: RemoteHoldemPlayerContext) -> None:
-        context.bet_or_raise(self.amount)
+    # def perform(self, context: RemoteHoldemPlayerContext) -> None:
+    #     context.bet_or_raise(self.amount)
 
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:

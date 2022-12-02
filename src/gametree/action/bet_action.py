@@ -16,9 +16,9 @@ class BetAction(SearchBotAction):
         super().__init__(game_state, actor)
         self.amount = amount
 
-    # @Override
-    def perform(self, context: RemoteHoldemPlayerContext) -> None:
-        context.bet_or_raise(self.amount)
+    # # @Override
+    # def perform(self, context: RemoteHoldemPlayerContext) -> None:
+    #     context.bet_or_raise(self.amount)
 
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:

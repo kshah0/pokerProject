@@ -114,13 +114,13 @@ class GameState(ABC):
     def get_next_seated_player_after(self, player_id: PlayerId) -> PlayerState:
         pass
 
-    @abstractmethod
-    def accept_history_visitor(self, visitor: GameStateVisitor, start: GameState) -> None:
-        pass
+    # @abstractmethod
+    # def accept_history_visitor(self, visitor: GameStateVisitor, start: GameState) -> None:
+    #     pass
 
-    @abstractmethod
-    def accept_visitor(self, visitor: GameStateVisitor) -> None:
-        pass
+    # @abstractmethod
+    # def accept_visitor(self, visitor: GameStateVisitor) -> None:
+    #     pass
 
     # Get the PlayerState of the only player left for the pot, None if there are multiple left
     @abstractmethod

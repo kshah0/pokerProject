@@ -115,10 +115,10 @@ class AbstractGameState(GameState, ABC):
                 break
         return current_player
 
-    def accept_history_visitor(self, visitor: GameStateVisitor, start: GameState) -> None:
-        if self != start:
-            self.get_previous_game_state().accept_history_visitor(visitor, start)
-            self.accept_visitor(visitor)
+    # def accept_history_visitor(self, visitor: GameStateVisitor, start: GameState) -> None:
+    #     if self != start:
+    #         self.get_previous_game_state().accept_history_visitor(visitor, start)
+    #         self.accept_visitor(visitor)
     
     def __str__(self) -> str:
         return self.get_last_event() + '\n' + self.get_previous_game_state()

@@ -14,8 +14,8 @@ class CallAction(SearchBotAction):
     def __init__(self, game_state: GameState, actor: PlayerId) -> None:
         super().__init__(game_state, actor)
 
-    def perform(self, context: RemoteHoldemPlayerContext) -> None:
-        context.check_or_call()
+    # def perform(self, context: RemoteHoldemPlayerContext) -> None:
+    #     context.check_or_call()
 
     # @Override
     def get_unwrapped_state_after_action(self) -> GameState:
