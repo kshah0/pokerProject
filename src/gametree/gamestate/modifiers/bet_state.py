@@ -1,4 +1,3 @@
-
 from typing import List
 from gametree.gamestate.forwarding_game_state import ForwardingGameState
 from gametree.gamestate.game_state import GameState

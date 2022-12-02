@@ -1,5 +1,11 @@
 from gametree.action.search_bot_action import SearchBotAction
 from gametree.gamestate.game_state import GameState
+from gametree.gamestate.modifiers.all_in_state import AllInState
+from gametree.gamestate.modifiers.bet_state import BetState
+from gametree.gamestate.modifiers.events.all_in_event import AllInEvent
+from gametree.gamestate.modifiers.events.bet_event import BetEvent
+from gametree.gamestate.modifiers.events.next_player_event import NextPlayerEvent
+from gametree.gamestate.modifiers.next_player_state import NextPlayerState
 from gametree.playerstate.player_id import PlayerId
 
 
@@ -22,7 +28,7 @@ class BetAction(SearchBotAction):
                 self.game_state,
                 AllInEvent(self.actor, self.amount)
             )
-        elif stack > amount:
+        elif stack > self.amount:
             bet_state = BetState(
                 self.game_state,
                 BetEvent(self.actor, self.amount)
