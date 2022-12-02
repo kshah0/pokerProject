@@ -1,4 +1,5 @@
 from gametree.gamestate.game_state import GameState
+from gametree.gamestate.modifiers.fold_state import FoldState
 from gametree.playerstate.player_state import PlayerState
 
 
