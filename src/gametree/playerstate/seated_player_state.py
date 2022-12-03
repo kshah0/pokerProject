@@ -4,6 +4,7 @@ from gametree.action.probability_action import ProbabilityAction
 from gametree.playerstate.abstract_player_state import AbstractPlayerState
 from gametree.playerstate.player_id import PlayerId
 from gametree.playerstate.seat_id import SeatId
+from gametree.playerstate.seated_player import SeatedPlayer
 
 
 class SeatedPlayerState(AbstractPlayerState):
