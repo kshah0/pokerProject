@@ -1,9 +1,8 @@
 from gametree.playerstate.player_id import PlayerId
 
 from gametree.gamestate.game_state import GameState
-from gametree.mcts.nodes.inode import INode
 
-from typing import Tuple, Dict, List
+from typing import Tuple
 
 from opp_model import OpponentModel
 from sklearn.tree import DecisionTreeClassifier

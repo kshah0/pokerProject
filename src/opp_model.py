@@ -22,27 +22,21 @@ class OpponentModel(ABC):
         pass
 
     # May not need these functions below
-    @abstractmethod
     def get_showdown_probabilities(self, gamestate:GameState, actor:PlayerId) -> List[float]:
         pass
 
-    @abstractmethod
     def set_chosen_node(self, node:INode) -> None:
         pass
 
-    @abstractmethod
     def get_chosen_node(self) -> INode:
         pass
 
-    @abstractmethod
     def assume_permanently(self, gamestate:GameState) -> None:
         pass
 
-    @abstractmethod
     def assume_temporarily(self, gamestate:GameState) -> None:
         pass
 
-    @abstractmethod
     def forget_last_assumption(self) -> None:
         pass
 
