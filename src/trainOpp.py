@@ -4,7 +4,7 @@ from os.path import isfile, join
 from sklearn import tree
 import pickle
 
-LOG_PATH = "./../../5H1AI_logs"
+LOG_PATH = "./../../5H1AI_logs/"
 BB_value = 100
 
 # Maps actions "no action", "fold", and "call"
@@ -190,7 +190,6 @@ if __name__ == '__main__':
     output_train = round(output_train).astype(int)
     opp_model = tree.DecisionTreeClassifier()
     opp_model.fit(input_train, output_train)
-
 
     # Open the file to save as pkl file
     opp_model_file = open("opp_model.pkl", 'wb')
